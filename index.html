@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic tac toe</title>
+    <!-- <script src="./index.js"></script> -->
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <audio id="myAudio">
+        <source src="./mixkit-air-woosh-1489.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+   
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding:10px 10%;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"> <i class="bi bi-thermometer-snow"></i> TIC TAC TOE </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto ">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                            <a class="nav-link" href="/registration">registration</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/login">login</a>
+                          </li> -->
+
+
+            </div>
+        </div>
+    </nav>
+    <!-- ################### navbar ############################### -->
+
+    <div class="gamecontainer">
+        <div class="container">
+            <div class="box box1"><span class="box-text"></span></div>
+            <div class="box box2"><span class="box-text"></span></div>
+            <div class="box box3"><span class="box-text"></span></div>
+            <div class="box box4"><span class="box-text"></span></div>
+            <div class="box box5"><span class="box-text"></span></div>
+            <div class="box box6"><span class="box-text"></span></div>
+            <div class="box box7"><span class="box-text"></span></div>
+            <div class="box box8"><span class="box-text"></span></div>
+            <div class="box box9"><span class="box-text"></span></div>
+        </div>
+        <div class="game-info">
+            <h1 class="info"></h1>
+            
+            <div class="boxDetail">
+                <img src="./cute.gif" alt="">
+                <button id="reset">Reset</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+   <script>
+
+// let audio=new Audio("air.mp3")
+// console.log(audio);
+let turn="X";
+let gameOver=false;
+const changeTurn=()=>{
+   return  turn==="X"?"0":"X";
+}
+const checkWin=()=>{
+    
+    let box=document.getElementsByClassName("box-text")
+    console.log(box);
+    let wins=[
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [2,4,6],
+        [0,4,8],
+       
+       
+        
+    ]
+   
+    wins.forEach((e)=>{
+        if((box[e[0]].innerText===box[e[1]].innerText )&& (box[e[2]].innerText===box[e[1]].innerText)&&(box[e[0]].innerText!=="")){
+            document.getElementsByClassName("info")[0].innerText=box[e[0]].innerText + "is winner"
+            gameOver=true;
+        }
+        // if((box[e[3]].innerText===box[e[4]].innerText )&& (box[e[5]].innerText===box[e[3]].innerText)&&(box[e[3]].innerText!=="")){
+        //     document.getElementsByClassName("info")[0].innerText=box[e[0]].innerText + "is winner"
+        //     gameOver=true;
+        // }
+        
+    //     else if((box[e[6]].innerText===box[e[7]].innerText )&& (box[e[8]].innerText===box[e[7]].innerText)&&(box[e[6]].innerText!=="")){
+    //         document.getElementsByClassName("info")[0].innerText=box[e[0]].innerText + "is winner"
+    //         gameOver=true;
+    //     }
+    //     else if((box[e[0]].innerText===box[e[3]].innerText )&& (box[e[6]].innerText===box[e[3]].innerText)&&(box[e[0]].innerText!=="")){
+    //         document.getElementsByClassName("info")[0].innerText=box[e[0]].innerText + "is winner"
+    //         gameOver=true;
+    //     }
+    //    else if((box[e[1]].innerText===box[e[4]].innerText )&& (box[e[7]].innerText===box[e[4]].innerText)&&(box[e[1]].innerText!=="")){
+    //         document.getElementsByClassName("info")[0].innerText=box[e[0]].innerText + "is winner"
+    //         gameOver=true;
+    //     }
+    //     else if((box[e[2]].innerText===box[e[5]].innerText )&& (box[e[8]].innerText===box[e[5]].innerText)&&(box[e[2]].innerText!=="")){
+    //         document.getElementsByClassName("info")[0].innerText=box[e[0]].innerText + "is winner"
+    //         gameOver=true;
+    //     }
+    //     else if((box[e[2]].innerText===box[e[4]].innerText )&& (box[e[6]].innerText===box[e[4]].innerText)&&(box[e[2]].innerText!=="")){
+    //         document.getElementsByClassName("info")[0].innerText=box[e[0]].innerText + "is winner"
+    //         gameOver=true;
+    //     }
+       
+    //     else if((box[e[0]].innerText===box[e[4]].innerText )&& (box[e[8]].innerText===box[e[0]].innerText)&&(box[e[0]].innerText!=="")){
+    //         document.getElementsByClassName("info")[0].innerText=box[e[0]].innerText + "is winner"
+    //         gameOver=true;
+    //     }
+        
+        
+
+        
+        // if(box[e[0]].innerText===box[e[1]].innerText ){
+        //     console.log("i m winner");
+        // }
+        
+    })
+}
+
+// Main logic of a program
+let audio=new Audio("air.wav")
+console.log(audio);
+const sound=document.getElementsByClassName("box")
+console.log(sound);
+Array.from(sound).forEach((element)=>{
+    console.log(element);
+    let box=element.querySelector(".box-text")
+    console.log(box);
+    
+    element.addEventListener("click",()=>{
+        console.log(box);
+    if( box.innerText===""){
+        
+      box.innerText=turn;
+      console.log(box.innerText);
+      turn=changeTurn();
+     console.log(changeTurn);
+     checkWin();
+     if(!gameOver){
+        const turnFor=document.getElementsByClassName("info")[0].innerText="Turn for:"+ turn;
+
+     }
+
+
+    }
+   
+    })
+   
+})
+
+
+
+   </script>
+</body>
+
+</html>
